@@ -21,8 +21,8 @@ Example usage:
 ###### vote
 This command allows users to vote in the current vote being called. Arguments of the vote command can only be *yes* or *no*. 
 
-Example usage: 
-*/vote yes*
-*/vote no*
-*/vote yes but only the first argument is considered* will still vote yes.
-*/vote no yes* will vote yes, as only the first argument is considered. 
+Example usage:   
+*/vote yes*  
+*/vote no*  
+*/vote yes but only the first argument is considered* will still vote yes.  
+*/vote no yes* will vote yes, as only the first argument is considered.   
