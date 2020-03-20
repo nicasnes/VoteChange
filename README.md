@@ -13,7 +13,7 @@ The plugin utilizes two primary commands: */callvote* and */vote*.
 ###### callvote
 This command can take any String as a parameter, but it should be a working command in your Minecraft server. If the vote receives a 2/3 majority of *yes* votes, the user will execute the command. The current voting period lasts ten seconds. Users cannot vote to set themselves a server operator at the present moment.
 
-Example usage:
+Example usage:   
 */callvote gamemode creative myUserName*  
 */callvote time set day*  
 */callvote weather clear*  
