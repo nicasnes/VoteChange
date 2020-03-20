@@ -1,0 +1,16 @@
+name: VoteChange
+version: ${project.version}
+main: xyz.asnes.votechange.VoteChange
+api-version: 1.13
+authors: [Nic]
+description: Allows voting to change various game settings
+website: asnes.xyz
+commands:
+  callvote:
+    description: Call a vote.
+    aliases: [cv, call_vote]
+    usage: /callvote command
+  vote:
+    description: Vote yes or no.
+    aliases: [v]
+    usage: /vote [yes/no]
