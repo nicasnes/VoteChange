@@ -6,6 +6,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import xyz.asnes.votechange.CommandData;
 import xyz.asnes.votechange.VoteChange;
 import java.util.ArrayList;
 
@@ -44,29 +45,40 @@ public class CallVote implements CommandExecutor {
     if (args.length == 0) {
       sender.sendMessage(ChatColor.RED + "You cannot call a vote on nothing.");
       return true;
-    } else if (isVote) {
-      sender.sendMessage(ChatColor.RED + "There is already a vote in progress.");
-      return true;
-    } else if (sender instanceof Player) {
-      isVote = true;
-      Player p = (Player) sender;
-      String subCom = constructSubCommand(args);
-      Bukkit.broadcastMessage(p.getDisplayName() + " has called a VOTE! \nThey want to execute command " +
-          ChatColor.BOLD + ChatColor.GOLD + subCom + ChatColor.WHITE + "\nType " + ChatColor.GREEN + "/vote yes" + ChatColor.WHITE + " or " +
-          ChatColor.RED + "/vote no");
-      Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
-        public void run() {
-          if (voteApproved()) {
-            Bukkit.broadcastMessage(p.getDisplayName() + "'s vote was" + ChatColor.GREEN + " APPROVED.");
-            p.setOp(true);
-            p.performCommand(subCom);
-            p.setOp(false);
-          } else {
-            Bukkit.broadcastMessage(p.getDisplayName() + "'s vote was" + ChatColor.RED + " DENIED.");
-          }
-          resetVote();
+    } else if (isVote && sender instanceof Player) {
+        if (plugin.voteProposers.contains(sender.getName())) {
+          sender.sendMessage(ChatColor.RED + "You cannot queue two votes. Please try again after your vote is complete.");
+          return true;
         }
-      }, 450L);
+        sender.sendMessage(ChatColor.RED + "There is already a vote in progress. Your vote has been added to the queue.");
+        plugin.dataQueue.add(new CommandData(sender, command, label, args));
+        plugin.voteProposers.add(sender.getName());
+        return true;
+    } else if (sender instanceof Player) {
+        isVote = true;
+        Player p = (Player) sender;
+        String subCom = constructSubCommand(args);
+        Bukkit.broadcastMessage(p.getDisplayName() + " has called a VOTE! \nThey want to execute command " +
+            ChatColor.BOLD + ChatColor.GOLD + subCom + ChatColor.WHITE + "\nType " + ChatColor.GREEN + "/vote yes" + ChatColor.WHITE + " or " +
+            ChatColor.RED + "/vote no");
+        Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+          public void run() {
+            if (voteApproved()) {
+              Bukkit.broadcastMessage(p.getDisplayName() + "'s vote was" + ChatColor.GREEN + " APPROVED.");
+              p.setOp(true);
+              p.performCommand(subCom);
+              p.setOp(false);
+            } else {
+              Bukkit.broadcastMessage(p.getDisplayName() + "'s vote was" + ChatColor.RED + " DENIED.");
+            }
+            resetVote();
+            if (!plugin.dataQueue.isEmpty()) {
+              CommandData topData = plugin.dataQueue.poll();
+              onCommand(topData.sender, topData.command, topData.label, topData.args);
+              plugin.voteProposers.remove(topData.sender.getName());
+            }
+          }
+        }, 450L);
     } else {
       sender.sendMessage("You must be a player to call a vote.");
     }
@@ -74,7 +86,7 @@ public class CallVote implements CommandExecutor {
   }
 
   public boolean voteApproved() {
-    if ((double) numYes > (numVotes * (2.0 / 3.0))) {
+    if ((double) numYes >= (numVotes * (2.0 / 3.0))) {
       return true;
     }
     return false;
@@ -101,4 +113,5 @@ public class CallVote implements CommandExecutor {
     }
     return subCom;
   }
+
 }

@@ -10,7 +10,32 @@ commands:
     description: Call a vote.
     aliases: [cv, call_vote]
     usage: /callvote command
+    permission: votechange.cv
   vote:
     description: Vote yes or no.
     aliases: [v]
     usage: /vote [yes/no]
+    permission: votechange.v
+  clearqueue:
+    description: Clear the voting queue.
+    aliases: [cq, clear_queue]
+    usage: /clearqueue
+    permission: votechange.cq
+  viewqueue:
+    description: View the voting queue.
+    aliases: [vq, view_queue]
+    usage: /viewqueue
+    permission: votechange.vq
+permissions:
+  votechange.cv:
+    deescription: Permission to clear the queue.
+    default: not op
+  votechange.v:
+    deescription: Permission to clear the queue.
+    default: not op
+  votechange.cq:
+    deescription: Permission to clear the queue.
+    default: op
+  votechange.vq:
+    deescription: Permission to clear the queue.
+    default: not op

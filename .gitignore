@@ -1,0 +1,16 @@
+
+*.xml
+*.jar
+*.lst
+VoteChange/target/classes/xyz/asnes/democracy/commands/CallVote$1.class
+VoteChange/target/classes/plugin.yml
+VoteChange/target/classes/xyz/asnes/democracy/commands/CallVote.class
+VoteChange/target/classes/xyz/asnes/democracy/commands/Vote.class
+VoteChange/target/classes/xyz/asnes/democracy/VoteChange.class
+VoteChange/target/classes/xyz/asnes/votechange/commands/Vote.class
+VoteChange/target/classes/xyz/asnes/votechange/VoteChange.class
+VoteChange/target/classes/xyz/asnes/votechange/commands/ViewVotingQueue.class
+VoteChange/target/classes/xyz/asnes/votechange/commands/CallVote.class
+VoteChange/target/classes/xyz/asnes/votechange/commands/ClearVotingQueue.class
+VoteChange/target/classes/xyz/asnes/votechange/commands/CallVote$1.class
+VoteChange/target/classes/xyz/asnes/votechange/CommandData.class
