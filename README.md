@@ -25,4 +25,16 @@ Example usage:
 */vote yes*  
 */vote no*  
 */vote yes but only the first argument is considered* will still vote yes.  
-*/vote no yes* will vote yes, as only the first argument is considered.   
+*/vote no yes* will vote no, as only the first argument is considered.   
+
+###### clearqueue
+This command allows the user to clear the queue of upcoming votes. Default permission requirement is server operator only.
+
+Example usage:
+*/clearqueue*
+
+###### viewqueue
+This command allows the user to view the contents of the queue.
+
+Example usage:
+*/viewqueue*
