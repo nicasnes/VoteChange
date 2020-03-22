@@ -1,6 +1,7 @@
 
 *.xml
 *.jar
+*.iml
 *.lst
 VoteChange/target/classes/xyz/asnes/democracy/commands/CallVote$1.class
 VoteChange/target/classes/plugin.yml
