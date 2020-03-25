@@ -29,13 +29,13 @@ commands:
 permissions:
   votechange.cv:
     description: Permission to call a vote.
-    default: not op
+    default: true
   votechange.v:
     description: Permission to vote.
-    default: not op
+    default: true
   votechange.cq:
     description: Permission to clear the queue.
-    default: op
+    default: false;
   votechange.vq:
     description: Permission to view the queue.
-    default: not op
+    default: true
