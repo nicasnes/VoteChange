@@ -18,11 +18,11 @@ public class ClearVotingQueue implements CommandExecutor {
   @Override
   public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
     if (plugin.dataQueue.isEmpty()) {
-      Bukkit.broadcastMessage(ChatColor.RED + "There are no votes queued.");
+      Bukkit.broadcastMessage(ChatColor.RED + plugin.getConfig().getString("queue-empty-message"));
     } else {
       plugin.dataQueue.clear();
       plugin.voteProposers.clear();
-      Bukkit.broadcastMessage(ChatColor.RED + "The voting queue has been cleared.");
+      Bukkit.broadcastMessage(ChatColor.RED + plugin.getConfig().getString("queue-cleared-message"));
     }
     return true;
   }

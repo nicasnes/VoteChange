@@ -19,7 +19,7 @@ public class ViewVotingQueue implements CommandExecutor {
   @Override
   public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
     if (plugin.dataQueue.isEmpty()) {
-      sender.sendMessage(ChatColor.AQUA + "The voting queue is empty.");
+      sender.sendMessage(ChatColor.AQUA + plugin.getConfig().getString("queue-empty-message"));
     } else {
       for (CommandData curData : plugin.dataQueue) {
         sender.sendMessage(ChatColor.GOLD + curData.sender.getName() + ChatColor.WHITE + " will vote to run command " +

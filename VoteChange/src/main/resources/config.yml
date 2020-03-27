@@ -1,0 +1,16 @@
+vote-duration-seconds: 20
+required-majority: 0.6666
+minimum-players: 3
+empty-vote-message: 'You cannot call a vote on nothing.'
+one-queued-message: 'You cannot queue two votes. Please try again after your vote is complete.'
+only-one-vote-message: 'There is already a vote in progress. Your vote has been added to the queue.'
+command-blacklisted-message: 'The requested command is not allowed.'
+cap-not-reached-message: 'There are not enough players online to vote on that command.'
+players-only-message: 'You must be a player to call a vote.'
+queue-empty-message: 'The voting queue is empty.'
+queue-cleared-message: 'The voting queue has been cleared.'
+blacklisted-commands:
+  - "op"
+whitelisted-commands:
+  - "time"
+  - "weather"

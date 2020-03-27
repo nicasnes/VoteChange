@@ -20,6 +20,8 @@ public final class VoteChange extends JavaPlugin implements Listener {
   @Override
   public void onEnable() {
     // Plugin startup logic
+    getConfig().options().copyDefaults();
+    saveDefaultConfig();
     System.out.println("VoteChange enabled");
     dataQueue = new LinkedList<>();
     voteProposers = new ArrayList<>();
